@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 
 @Component({
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'bug-relative-urls-are-not-converted-to-absolute-urls-ssr';
+  httpResponse: any;
+
+  constructor(private httpClient: HttpClient) { }
+
+  ngOnInit(): void {
+    this.httpClient.get('api').subscribe((res) => {
+      this.httpResponse = res;
+      console.log(res);
+    });
+  }
 }
